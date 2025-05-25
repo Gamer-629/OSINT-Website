@@ -3,7 +3,11 @@ A full-stack Open Source Intelligence (OSINT) tool for searching usernames, emai
 The project features a modern JavaScript frontend and a Python Flask backend with web scraping and API integrations.
 
 Working Pictures:
-[! Home Page](https://github.com/Gamer-629/OSINT-Website/blob/main/Assets/Screenshot%202025-05-25%20120441.png)
+[Home Page](https://github.com/Gamer-629/OSINT-Website/blob/main/Assets/Screenshot%202025-05-25%20120441.png)
+[Supported Formats](https://github.com/Gamer-629/OSINT-Website/blob/main/Assets/Screenshot%202025-05-25%20120456.png)
+[Exaple use](https://github.com/Gamer-629/OSINT-Website/blob/main/Assets/Screenshot%202025-05-25%20121310.png)
+
+
 
 
 Features:
