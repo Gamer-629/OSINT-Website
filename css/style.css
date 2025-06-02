@@ -5,8 +5,6 @@
     box-sizing: border-box;
 }
 
-/* ...existing code... */
-
 body {
     background: #ffffff;
     color: #222222;
@@ -15,140 +13,7 @@ body {
     /* padding-top: 110px;  Remove this to fix header gap */
 }
 
-/* --- Dark mode styles --- */
-body.dark-mode {
-    background: #181a1b;
-    color: #f1f1f1;
-}
-
-body.dark-mode header {
-    background: #23272a;
-}
-
-body.dark-mode .btn-small {
-    background: #23272a;
-    color: #fff;
-    border: 1px solid #444;
-}
-
-body.dark-mode .disclaimer-section-top {
-    background: #23272a;
-    color: #ffb347;
-}
-
-body.dark-mode .brand-title {
-    color: #ffb347;
-}
-
-body.dark-mode .hi h1 {
-    color: #1da1f2;
-}
-
-body.dark-mode .search-section {
-    background: #23272a;
-    color: #f1f1f1;
-}
-
-body.dark-mode .footer {
-    background: #23272a;
-    color: #f1f1f1;
-}
-
-body.dark-mode .footer-disclaimer {
-    color: #ffb347;
-}
-
-body.dark-mode .search-container,
-body.dark-mode .progress-section,
-body.dark-mode .results-section {
-    background: #23272a !important;
-    color: #f1f1f1 !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-/* ...existing code... */
-
-.search-container,
-.progress-section,
-.results-section {
-    background: rgba(255, 255, 255, 0.95);
-    color: inherit; /* Inherit from body for dynamic color */
-    /* ...existing code... */
-}
-
-.search-container h2,
-.search-container p,
-.input-group label,
-.platform-selection label,
-.results-header,
-.results-summary span,
-.found-content p {
-    color: inherit; /* Inherit from parent for dynamic color */
-}
-
-/* For headings, you can set a different color in dark mode if you want */
-body.dark-mode .search-container h2,
-body.dark-mode .results-header {
-    color: #1da1f2;
-}
-body.dark-mode .search-container p,
-body.dark-mode .results-summary span,
-body.dark-mode .found-content p {
-    color: #f1f1f1;
-}
-
-/* Make platform checkbox text dynamic */
-.platform-item span {
-    color: inherit; /* Inherit from parent for dynamic color */
-}
-
-/* In dark mode, ensure checkbox text is light */
-body.dark-mode .platform-item span {
-    color: #f1f1f1;
-}
-
-/* Dark mode toggle emoji button at top right */
-#theme-toggle {
-    background: transparent;
-    border: none;
-    font-size: 1.7em;
-    cursor: pointer;
-    box-shadow: none;
-    color: #222;
-    padding: 0 10px 0 0;
-    margin-right: 8px;
-    vertical-align: middle;
-    position: static;
-}
-
-body.dark-mode #theme-toggle {
-    color: #f1f1f1;
-}
-
-#theme-toggle:focus {
-    outline: none;
-}
-
-/* ...existing code... */
-.hi {
-    margin-top: -40px;
-    margin-bottom: 24px;
-    text-align: center;
-    position: relative;
-}
-
-.hi h1 {
-    color: #0aa6b4; /* Blue color */
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif,italic;
-    font-size: 2.1em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin: 0;
-    text-shadow: 0 2px 8px rgba(30,30,30,0.08);
-    font-style: italic;
-}
-
-/* ...existing code... */
+/* Header Styles */
 header {
     position: fixed;
     top: 0;
@@ -158,6 +23,9 @@ header {
     z-index: 9999;
     background: #000000; /* Or your preferred background */
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Add padding-top to main container to prevent content from hiding under the header */
@@ -171,14 +39,17 @@ main.container {
     margin-right: 10px;
     /* Optional: rounded corners */
 }
-nav{
+
+nav {
     align-items: center;
     padding: 30px 20px;
 }
+
 .nav-brand {
     display: flex;
     align-items: center;
 }
+
 .brand-title {
     font-size: 1.7em;
     font-weight: bold;
@@ -186,11 +57,13 @@ nav{
     color: #ff6315;
     /* Remove or reduce any margin-top or margin-bottom if present */
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
+
 .disclaimer-section-top {
     position: absolute;
     top: 20px;
@@ -207,6 +80,7 @@ nav{
     align-items: center;
     gap: 8px;
 }
+
 .jok {
     margin-top:1px;
     padding: 10px 18px;
@@ -249,6 +123,7 @@ nav{
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.267);
+    -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
 }
 
@@ -414,77 +289,322 @@ nav{
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.progress-section h3 {
+    color: #1e3c72;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .progress-bar {
     width: 100%;
-    height: 20px;
+    height: 8px;
     background: #e1e5e9;
     border-radius: 10px;
     overflow: hidden;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .progress-fill {
     height: 100%;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    transition: width 0.3s ease;
+    transition: width 0.5s ease;
     width: 0%;
 }
 
 .progress-text {
     color: #666;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+/* Add loading spinner */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(30, 60, 114, 0.1);
+    border-top: 4px solid #1e3c72;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 1rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Dark mode support for progress section */
+body.dark-mode .progress-section {
+    background: rgba(35, 39, 42, 0.95);
+}
+
+body.dark-mode .progress-section h3 {
+    color: #1da1f2;
+}
+
+body.dark-mode .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .progress-text {
+    color: #e1e1e1;
 }
 
 /* Results Section */
 .results-section {
-    background: rgb(255, 255, 255);
-    padding: 2rem;
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 1000px;
 }
 
 .results-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #e1e5e9;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(225, 229, 233, 0.5);
+}
+
+.results-header h3 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .results-summary {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .results-summary span {
-    padding: 0.5rem 1rem;
-    background: #f8f9fa;
-    border-radius: 20px;
-    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    background: rgba(30, 60, 114, 0.1);
+    border-radius: 30px;
+    font-weight: 500;
+    color: #1e3c72;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.result-actions a{
-    display: inline-block;
-    margin-top: 0.5em;
-    padding:0.4em 1em;
-    background:rgba(29, 161, 242, 0.1);
-    color: #1da1f2;
-    border-radius: 6px;
+.results-container {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(225, 229, 233, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(225, 229, 233, 0.5);
+}
+
+.platform-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.platform-badge i {
+    font-size: 1.2rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
     font-weight: 600;
-    transition: background 0.3s color 0.2s;
-    box-shadow:10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.found {
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+}
+
+.status-badge.not-found {
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+}
+
+.status-badge.error {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.result-content {
+    margin-bottom: 1.25rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(225, 229, 233, 0.5);
+}
+
+.btn-visit {
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    flex: 1;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    
+    background: #1e3c72;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.2);
+}
+
+.btn-visit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 60, 114, 0.3);
+}
+
+.btn-info {
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: rgba(30, 60, 114, 0.1);
+    color: #1e3c72;
+    border: none;
+}
+
+.btn-info:hover {
+    background: rgba(30, 60, 114, 0.15);
 }
 
 .export-actions {
-    text-align: center;
-    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 2px solid #e1e5e9;
+    border-top: 2px solid rgba(225, 229, 233, 0.5);
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: #28a745;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-outline {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: transparent;
+    color: #1e3c72;
+    border: 2px solid #1e3c72;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-outline:hover {
+    background: #1e3c72;
+    color: white;
+}
+
+/* Dark mode support for results section */
+body.dark-mode .results-section {
+    background: rgba(35, 39, 42, 0.95);
+}
+
+body.dark-mode .result-card {
+    background: #2c2c2c;
+    border-color: #3a3a3a;
+}
+
+body.dark-mode .result-content {
+    color: #e1e1e1;
+}
+
+body.dark-mode .results-header h3 {
+    color: #1da1f2;
+}
+
+body.dark-mode .results-summary span {
+    background: rgba(29, 161, 242, 0.1);
+    color: #1da1f2;
+}
+
+body.dark-mode .btn-info {
+    background: rgba(29, 161, 242, 0.1);
+    color: #1da1f2;
+}
+
+body.dark-mode .btn-outline {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+body.dark-mode .btn-outline:hover {
+    background: #1da1f2;
+    color: #1a1a1a;
 }
 
 /* Footer */
@@ -575,3 +695,479 @@ body > * {
     z-index: 1;
 }
 
+.platform-badge.hunter {
+    background: rgba(29, 161, 242, 0.1);
+    color: #1da1f2;
+}
+
+.platform-badge.hunter i {
+    color: #1da1f2;
+}
+
+/* Reddit Results Styling */
+.reddit-results,
+.reddit-search-results {
+    padding: 1em;
+}
+
+.reddit-overview {
+    background: rgba(255, 69, 0, 0.1);
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
+.reddit-overview h4 {
+    color: #FF4500;
+    margin-bottom: 0.5em;
+}
+
+.reddit-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reddit-list li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1em 0;
+}
+
+.reddit-list li:last-child {
+    border-bottom: none;
+}
+
+.reddit-list a {
+    color: #1a1a1b;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.reddit-list a:hover {
+    color: #FF4500;
+}
+
+.reddit-meta {
+    font-size: 0.9em;
+    color: #7c7c7c;
+    display: block;
+}
+
+.comment-body {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.8em;
+    border-radius: 4px;
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+/* Dark mode support */
+body.dark-mode .reddit-list a {
+    color: #d7dadc;
+}
+
+body.dark-mode .reddit-meta {
+    color: #818384;
+}
+
+body.dark-mode .comment-body {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .reddit-overview {
+    background: rgba(255, 69, 0, 0.2);
+}
+
+/* Twitter Results Styling */
+.twitter-results,
+.twitter-search-results {
+    padding: 1em;
+}
+
+.twitter-user-info {
+    background: rgba(29, 161, 242, 0.1);
+    border-radius: 12px;
+    padding: 1.5em;
+    margin-bottom: 2em;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.user-names h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #000;
+}
+
+.username {
+    color: #536471;
+    font-size: 0.9em;
+}
+
+.verified-badge {
+    color: #1DA1F2;
+    margin-left: 0.3em;
+}
+
+.user-description {
+    margin: 1em 0;
+    line-height: 1.4;
+}
+
+.user-location {
+    color: #536471;
+    font-size: 0.9em;
+    margin: 0.5em 0;
+}
+
+.user-metrics {
+    display: flex;
+    gap: 1.5em;
+    margin-top: 1em;
+}
+
+.user-metrics span {
+    color: #536471;
+    font-size: 0.9em;
+}
+
+.user-metrics strong {
+    color: #000;
+    margin-right: 0.3em;
+}
+
+.tweet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.tweet {
+    background: #fff;
+    border: 1px solid #cfd9de;
+    border-radius: 12px;
+    padding: 1em;
+}
+
+.tweet-text {
+    margin: 0 0 1em 0;
+    line-height: 1.4;
+}
+
+.tweet-metrics {
+    display: flex;
+    gap: 1.5em;
+    color: #536471;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+.tweet-link {
+    color: #1DA1F2;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.tweet-link:hover {
+    text-decoration: underline;
+}
+
+/* User search results */
+.user-results {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.user-card {
+    background: #fff;
+    border: 1px solid #cfd9de;
+    border-radius: 12px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-link {
+    margin-top: auto;
+    color: #1DA1F2;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5em 0;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode support */
+body.dark-mode .twitter-user-info {
+    background: rgba(29, 161, 242, 0.2);
+}
+
+body.dark-mode .user-names h4 {
+    color: #fff;
+}
+
+body.dark-mode .tweet {
+    background: #192734;
+    border-color: #38444d;
+}
+
+body.dark-mode .user-card {
+    background: #192734;
+    border-color: #38444d;
+}
+
+body.dark-mode .user-metrics strong {
+    color: #fff;
+}
+
+body.dark-mode .tweet-text {
+    color: #fff;
+}
+
+/* Dark mode toggle button */
+#theme-toggle {
+    position: absolute;
+    top: 50%;
+    right: 350px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#theme-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design for theme toggle */
+@media (max-width: 768px) {
+    #theme-toggle {
+        right: 80px;
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+    }
+    
+    .disclaimer-section-top {
+        display: none; /* Hide disclaimer on mobile to prevent overlap */
+    }
+}
+
+@media (max-width: 480px) {
+    #theme-toggle {
+        right: 20px;
+    }
+}
+
+.hi {
+    margin-top: -40px;
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+}
+
+.hi h1 {
+    color: #0aa6b4; /* Blue color */
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif,italic;
+    font-size: 2.1em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(30,30,30,0.08);
+    font-style: italic;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: #1a1a1a;
+    color: #e1e1e1;
+}
+
+body.dark-mode .search-container {
+    background: rgba(35, 39, 42, 0.95);
+}
+
+body.dark-mode .search-container h2 {
+    color: #1da1f2;
+}
+
+body.dark-mode .search-container p {
+    color: #e1e1e1;
+}
+
+body.dark-mode .input-group label {
+    color: #e1e1e1;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-group select {
+    background: #2c2c2c;
+    border-color: #3a3a3a;
+    color: #e1e1e1;
+}
+
+body.dark-mode .platform-item {
+    background: #2c2c2c;
+    border-color: #3a3a3a;
+    color: #e1e1e1;
+}
+
+body.dark-mode .platform-item:hover {
+    background: rgba(29, 161, 242, 0.1);
+    border-color: #1da1f2;
+}
+
+body.dark-mode .hi h1 {
+    color: #1da1f2;
+}
+
+body.dark-mode .btn-primary {
+    background: linear-gradient(135deg, #1da1f2 0%, #1a91da 100%);
+}
+
+body.dark-mode .btn-secondary {
+    background: #2c2c2c;
+    color: #1da1f2;
+    border: 1px solid #1da1f2;
+}
+
+body.dark-mode .btn-outline {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+body.dark-mode .btn-outline:hover {
+    background: #1da1f2;
+    color: #1a1a1a;
+}
+
+body.dark-mode .result-card {
+    background: #2c2c2c;
+    border-color: #3a3a3a;
+}
+
+body.dark-mode .result-content {
+    color: #e1e1e1;
+}
+
+body.dark-mode .platform-badge {
+    background: rgba(29, 161, 242, 0.1);
+}
+
+body.dark-mode #theme-toggle {
+    background: rgba(29, 161, 242, 0.1);
+    border-color: #1da1f2;
+    color: #e1e1e1;
+}
+
+body.dark-mode #theme-toggle:hover {
+    background: rgba(29, 161, 242, 0.2);
+}
+
+body.dark-mode .found-content {
+    background: rgba(29, 161, 242, 0.1);
+    border-color: #1da1f2;
+}
+
+body.dark-mode .found-content p {
+    color: #e1e1e1;
+}
+
+/* Dark mode support for notifications */
+body.dark-mode .notification {
+    background: #2c2c2c;
+    color: #e1e1e1;
+    border: 1px solid #1da1f2;
+}
+
+/* Dark mode support for progress section */
+body.dark-mode .progress-section {
+    background: rgba(35, 39, 42, 0.95);
+}
+
+body.dark-mode .progress-section h3 {
+    color: #1da1f2;
+}
+
+body.dark-mode .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .progress-fill {
+    background: linear-gradient(135deg, #1da1f2 0%, #1a91da 100%);
+}
+
+body.dark-mode .progress-text {
+    color: #e1e1e1;
+}
+
+/* Dark mode support for results section */
+body.dark-mode .results-section {
+    background: rgba(35, 39, 42, 0.95);
+}
+
+body.dark-mode .results-header h3 {
+    color: #1da1f2;
+}
+
+body.dark-mode .results-summary span {
+    background: rgba(29, 161, 242, 0.1);
+    color: #1da1f2;
+}
+
+/* Dark mode support for footer */
+body.dark-mode .footer {
+    background: #181818;
+    border-color: #2c2c2c;
+}
+
+body.dark-mode .footer-disclaimer {
+    color: #888;
+}
+
+/* Dark mode background image adjustment */
+body.dark-mode::before {
+    opacity: 0.05;
+}
+body.dark-mode .footer {
+    background: #181818;
+    border-color: #2c2c2c;
+}
+
+body.dark-mode .footer-disclaimer {
+    color: #888;
+}
+
+/* Dark mode background image adjustment */
+body.dark-mode::before {
+    opacity: 0.05;
+}

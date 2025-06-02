@@ -33,15 +33,24 @@ const PlatformConfig = {
 
     twitter: {
         name: 'Twitter',
-        icon: 'fab fa-twitter', 
+        icon: 'fab fa-twitter',
         searchUrl: (query, type) => {
             const encodedQuery = encodeURIComponent(query);
             if (type === 'username') {
-                return `https://twitter.com/${encodedQuery}`;
+                return `/api/twitter/user/${encodedQuery}`;
             }
-            return `https://twitter.com/search?q=${encodedQuery}`;
+            return `/api/twitter/search?query=${encodedQuery}&type=${type || 'tweet'}`;
         },
-        checkMethod: 'redirect'
+        checkMethod: 'api',
+        processResponse: async (response) => {
+            const data = await response.json();
+            return {
+                found: data.status === 'found',
+                url: data.url,
+                content: data.content,
+                description: data.description || 'Twitter search results'
+            };
+        }
     },
 
     instagram: {
@@ -57,12 +66,17 @@ const PlatformConfig = {
         checkMethod: 'redirect'
     },
 
-    linkedin: {
-        name: 'LinkedIn',
-        icon: 'fab fa-linkedin',
+    hunter: {
+        name: 'Hunter.io',
+        icon: 'fas fa-search',
         searchUrl: (query, type) => {
             const encodedQuery = encodeURIComponent(query);
-            return `https://www.linkedin.com/search/results/people/?keywords=${encodedQuery}`;
+            if (type === 'domain') {
+                return `https://hunter.io/search/${encodedQuery}`;
+            } else if (type === 'email') {
+                return `https://hunter.io/email-verifier/${encodedQuery}`;
+            }
+            return `https://hunter.io/search/${encodedQuery}`;
         },
         checkMethod: 'redirect'
     },
@@ -84,13 +98,22 @@ const PlatformConfig = {
         name: 'Reddit',
         icon: 'fab fa-reddit',
         searchUrl: (query, type) => {
-            if (type === 'username') {
-                return `https://www.reddit.com/user/${query}`;
-            }
             const encodedQuery = encodeURIComponent(query);
-            return `https://www.reddit.com/search/?q=${encodedQuery}`;
+            if (type === 'username') {
+                return `/api/reddit/user/${encodedQuery}`;
+            }
+            return `/api/reddit/search?query=${encodedQuery}&type=${type || 'posts'}`;
         },
-        checkMethod: 'redirect'
+        checkMethod: 'api',
+        processResponse: async (response) => {
+            const data = await response.json();
+            return {
+                found: data.status === 'found',
+                url: data.url,
+                content: data.content,
+                description: data.description || 'Reddit search results'
+            };
+        }
     },
 
     youtube: {

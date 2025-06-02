@@ -28,8 +28,8 @@ class OSINTApp {
         });
 
         // Export buttons
-        document.getElementById('exportJsonBtn').addEventListener('click', () => {
-            Utils.exportAsJSON(this.currentResults);
+        document.getElementById('exportPdfBtn').addEventListener('click', () => {
+            Utils.exportAsPDF(this.currentResults);
         });
 
         document.getElementById('exportCsvBtn').addEventListener('click', () => {
@@ -54,7 +54,8 @@ class OSINTApp {
             'email': 'Enter email address (e.g., user@example.com)',
             'phone': 'Enter phone number (e.g., +1234567890)',
             'username': 'Enter username (e.g., aadhitya)',
-            'name': 'Enter full name (e.g., santhosh kumar)'
+            'name': 'Enter full name (e.g., santhosh kumar)',
+            'domain': 'Enter domain name (e.g., google.com)'
         };
         input.placeholder = placeholders[type] || 'Enter search query';
     }
@@ -118,57 +119,67 @@ class OSINTApp {
             return;
         }
 
-        // Group results by status
-        const foundResults = this.currentResults.filter(r => r.status === 'found');
-        const notFoundResults = this.currentResults.filter(r => r.status === 'not-found');
-        const errorResults = this.currentResults.filter(r => r.status === 'error');
-
-        // Display found results first
-        if (foundResults.length > 0) {
-            resultsContainer.innerHTML += '<h4 style="color: #28a745; margin: 1rem 0;">✓ Results Found</h4>';
-            foundResults.forEach(result => {
-                resultsContainer.innerHTML += this.createResultCard(result);
-            });
-        }
-
-        // Display not found results
-        if (notFoundResults.length > 0) {
-            resultsContainer.innerHTML += '<h4 style="color: #6c757d; margin: 1rem 0;">○ No Results</h4>';
-            notFoundResults.forEach(result => {
-                resultsContainer.innerHTML += this.createResultCard(result);
-            });
-        }
-
-        // Display error results
-        if (errorResults.length > 0) {
-            resultsContainer.innerHTML += '<h4 style="color: #dc3545; margin: 1rem 0;">⚠ Errors</h4>';
-            errorResults.forEach(result => {
-                resultsContainer.innerHTML += this.createResultCard(result);
-            });
-        }
+        // Display all results together
+        resultsContainer.innerHTML += '<h4 style="color: #28a745; margin: 1rem 0;">Search Results</h4>';
+        this.currentResults.forEach(result => {
+            resultsContainer.innerHTML += this.createResultCard(result);
+        });
     }
 
     // Create result card HTML
-    // ...existing code...
-    // Create result card HTML
     createResultCard(result) {
-        let statusClass;
-        let statusText;
-        if (result.status === 'found') {
-            statusClass = 'found';
-            statusText = 'Found';
-        } else if (result.status === 'error') {
-            statusClass = 'error';
-            statusText = 'Error';
-        } else {
-            statusClass = 'not-found';
-            statusText = 'Not Found';
+        // Always use the 'found' status class for consistent styling
+        const statusClass = 'found';
+        let statusText = 'Found';
+        
+        // Get the URL based on platform and query if not provided
+        let visitUrl = result.url;
+        if (!visitUrl) {
+            const query = result.query || document.getElementById('searchInput').value.trim();
+            const type = document.getElementById('searchType').value;
+            switch(result.platform.toLowerCase()) {
+                case 'google':
+                    visitUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'facebook':
+                    visitUrl = `https://www.facebook.com/search/top?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'twitter':
+                    visitUrl = `https://twitter.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'instagram':
+                    visitUrl = `https://www.instagram.com/explore/tags/${encodeURIComponent(query)}/`;
+                    break;
+                case 'linkedin':
+                    visitUrl = `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(query)}`;
+                    break;
+                case 'github':
+                    visitUrl = `https://github.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'reddit':
+                    visitUrl = `https://www.reddit.com/search/?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'youtube':
+                    visitUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+                    break;
+                default:
+                    visitUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+site:${result.platform.toLowerCase()}.com`;
+            }
         }
+
+        // Get platform icon class
+        let iconClass;
+        if (result.platform.toLowerCase() === 'hunter') {
+            iconClass = 'fas fa-search';
+        } else {
+            iconClass = `fab fa-${result.platform.toLowerCase()}`;
+        }
+
         return `
             <div class="result-card">
                 <div class="result-header">
                     <div class="platform-badge ${result.platform.toLowerCase()}">
-                        <i class="fab fa-${result.platform.toLowerCase()}"></i>
+                        <i class="${iconClass}"></i>
                         ${result.platform}
                     </div>
                     <div class="status-badge ${statusClass}">
@@ -179,10 +190,9 @@ class OSINTApp {
                     ${result.content || `<p>${result.description}</p>`}
                 </div>
                 <div class="result-actions">
-                    ${result.url && result.status !== 'error' ? 
-                        `<a href="${result.url}" target="_blank" class="btn-small btn-visit">
-                            <i class="fas fa-external-link-alt"></i> Visit
-                        </a>` : ''}
+                    <a href="${visitUrl}" target="_blank" class="btn-small btn-visit">
+                        <i class="fas fa-external-link-alt"></i> Visit ${result.platform}
+                    </a>
                     <button class="btn-small btn-info" onclick="app.showResultDetails('${result.platform}')">
                         <i class="fas fa-info-circle"></i> Details
                     </button>
