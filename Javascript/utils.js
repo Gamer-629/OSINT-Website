@@ -72,16 +72,64 @@ const Utils = {
         alert(info); // Simple implementation - could be enhanced with modal
     },
 
-    // Export data as JSON
-    exportAsJSON: (data) => {
-        const jsonStr = JSON.stringify(data, null, 2);
-        const blob = new Blob([jsonStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `osint-results-${Date.now()}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
+    // Export data as PDF
+    exportAsPDF: (data) => {
+        // Create new jsPDF instance
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Set initial position
+        let yPos = 20;
+        
+        // Add title
+        doc.setFontSize(16);
+        doc.text('OSINT Search Results', 20, yPos);
+        yPos += 10;
+        
+        // Add timestamp
+        doc.setFontSize(10);
+        doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, yPos);
+        yPos += 15;
+        
+        // Add results
+        doc.setFontSize(12);
+        data.forEach((item, index) => {
+            // Check if we need a new page
+            if (yPos > 270) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            // Platform name
+            doc.setFont(undefined, 'bold');
+            doc.text(`Platform: ${item.platform}`, 20, yPos);
+            yPos += 7;
+            
+            // Status
+            doc.setFont(undefined, 'normal');
+            doc.text(`Status: ${item.status}`, 30, yPos);
+            yPos += 7;
+            
+            // URL if exists
+            if (item.url) {
+                const urlText = `URL: ${item.url}`;
+                doc.text(urlText, 30, yPos);
+                yPos += 7;
+            }
+            
+            // Description
+            if (item.description) {
+                const splitDescription = doc.splitTextToSize(`Description: ${item.description}`, 170);
+                doc.text(splitDescription, 30, yPos);
+                yPos += (7 * splitDescription.length);
+            }
+            
+            // Add spacing between results
+            yPos += 10;
+        });
+        
+        // Save the PDF
+        doc.save(`osint-results-${Date.now()}.pdf`);
     },
 
     // Export data as CSV
